@@ -1,0 +1,1747 @@
+{
+  "screens": [
+    {
+      "id": "screen-2",
+      "name": "TV",
+      "code": "TV-1022",
+      "isPaired": true,
+      "lastHeartbeat": "2026-06-15T12:35:21.263Z",
+      "currentPlaylistId": "media-mqf61a89",
+      "location": "Área de Convivência - Térreo",
+      "notes": "Modelo Samsung Smart TV 4K",
+      "status": "online"
+    }
+  ],
+  "media": [
+    {
+      "id": "media-4",
+      "name": "Dashboard de Indicadores Operacionais",
+      "type": "html",
+      "url": "https://example.com/mock-dashboard",
+      "duration": 20,
+      "size": "Link Externo",
+      "createdAt": "2026-06-14T23:43:01.195Z"
+    },
+    {
+      "id": "media-mqf61a89",
+      "name": "Mural Multi-Zona Novo",
+      "type": "dashboard",
+      "url": "dashboard-layout",
+      "duration": 25,
+      "size": "Layout Customizado",
+      "createdAt": "2026-06-15T12:04:41.097Z",
+      "dashboardWidgets": [
+        {
+          "id": "zone-9rtn7qt",
+          "type": "clock",
+          "gridX": 1,
+          "gridY": 1,
+          "gridW": 8,
+          "gridH": 4
+        },
+        {
+          "id": "zone-5wjh136",
+          "type": "weather",
+          "gridX": 9,
+          "gridY": 1,
+          "gridW": 8,
+          "gridH": 4,
+          "customContent": "São Paulo, SP"
+        },
+        {
+          "id": "zone-hxsshw8",
+          "type": "feed",
+          "gridX": 1,
+          "gridY": 5,
+          "gridW": 8,
+          "gridH": 4,
+          "customContent": "geral"
+        },
+        {
+          "id": "zone-8gukfcu",
+          "type": "text",
+          "gridX": 9,
+          "gridY": 5,
+          "gridW": 8,
+          "gridH": 4,
+          "customContent": "Digite seu aviso corporativo aqui..."
+        },
+        {
+          "id": "zone-10xa3wq",
+          "type": "image",
+          "gridX": 17,
+          "gridY": 1,
+          "gridW": 8,
+          "gridH": 8,
+          "mediaId": ""
+        }
+      ]
+    },
+    {
+      "id": "media-mqf6u6s4",
+      "name": "Feed Tech",
+      "type": "feed",
+      "url": "feed-layout",
+      "duration": 10,
+      "size": "Feed Dinâmico",
+      "createdAt": "2026-06-15T12:27:09.652Z",
+      "feedCategory": "geral"
+    }
+  ],
+  "playlists": [
+    {
+      "id": "pl-2",
+      "name": "Playlist Refeitório",
+      "description": "Conteúdos informativos de nutrição, cardápio diário e avisos de RH.",
+      "items": [
+        {
+          "mediaId": "media-3",
+          "duration": 12
+        },
+        {
+          "mediaId": "media-2",
+          "duration": 8
+        },
+        {
+          "mediaId": "media-mqf61a89",
+          "duration": 25
+        }
+      ],
+      "createdAt": "2026-06-14T11:43:01.195Z"
+    }
+  ],
+  "schedules": [
+    {
+      "id": "schedule-1",
+      "name": "Programação Corporativa Matutina",
+      "playlistId": "pl-1",
+      "activeType": "scheduled",
+      "daysOfWeek": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "startTime": "08:00",
+      "endTime": "18:00",
+      "screens": [
+        "screen-1"
+      ],
+      "createdAt": "2026-06-13T11:43:01.195Z"
+    },
+    {
+      "id": "schedule-2",
+      "name": "Programação 24 Horas Refeitório",
+      "playlistId": "pl-2",
+      "activeType": "always",
+      "daysOfWeek": [],
+      "screens": [
+        "screen-2"
+      ],
+      "createdAt": "2026-06-14T23:43:01.195Z"
+    }
+  ],
+  "logs": [
+    {
+      "id": "log-mqf74q47",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:35:21.271Z"
+    },
+    {
+      "id": "log-mqf73ftx",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:34:21.285Z"
+    },
+    {
+      "id": "log-mqf725b0",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:33:20.988Z"
+    },
+    {
+      "id": "log-mqf70v86",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:32:21.270Z"
+    },
+    {
+      "id": "log-mqf6zkpv",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:31:20.995Z"
+    },
+    {
+      "id": "log-mqf6yp9s",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:30:40.240Z"
+    },
+    {
+      "id": "log-mqf6yana",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:30:21.286Z"
+    },
+    {
+      "id": "log-mqf6yafq",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:30:21.014Z"
+    },
+    {
+      "id": "log-mqf6x03v",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:29:20.971Z"
+    },
+    {
+      "id": "log-mqf6x03g",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:29:20.956Z"
+    },
+    {
+      "id": "log-mqf6vyae",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:28:31.958Z"
+    },
+    {
+      "id": "log-mqf6vsvv",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:28:24.955Z"
+    },
+    {
+      "id": "log-mqf6vq1k",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:28:21.272Z"
+    },
+    {
+      "id": "log-mqf6vnhf",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:28:17.955Z"
+    },
+    {
+      "id": "log-mqf6vi2y",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:28:10.954Z"
+    },
+    {
+      "id": "log-mqf6vcot",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:28:03.965Z"
+    },
+    {
+      "id": "log-mqf6v7a2",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:27:56.954Z"
+    },
+    {
+      "id": "log-mqf6v1vx",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:27:49.965Z"
+    },
+    {
+      "id": "log-mqf6uwhn",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:27:42.971Z"
+    },
+    {
+      "id": "log-mqf6urx6",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:27:37.050Z"
+    },
+    {
+      "id": "log-mqf6ufim",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:27:20.974Z"
+    },
+    {
+      "id": "log-mqf6ufii",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:27:20.970Z"
+    },
+    {
+      "id": "log-mqf6tpaa",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:46.978Z"
+    },
+    {
+      "id": "log-mqf6tjxo",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:40.044Z"
+    },
+    {
+      "id": "log-mqf6tehs",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:32.992Z"
+    },
+    {
+      "id": "log-mqf6t92t",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:25.973Z"
+    },
+    {
+      "id": "log-mqf6t5gf",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:21.279Z"
+    },
+    {
+      "id": "log-mqf6t3oj",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:18.979Z"
+    },
+    {
+      "id": "log-mqf6sy9x",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:11.973Z"
+    },
+    {
+      "id": "log-mqf6ssvk",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:26:04.976Z"
+    },
+    {
+      "id": "log-mqf6snhe",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:57.986Z"
+    },
+    {
+      "id": "log-mqf6si2q",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:50.978Z"
+    },
+    {
+      "id": "log-mqf6sc7c",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:43.368Z"
+    },
+    {
+      "id": "log-mqf6s6sa",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:36.346Z"
+    },
+    {
+      "id": "log-mqf6s1dl",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:29.337Z"
+    },
+    {
+      "id": "log-mqf6rvz4",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:22.336Z"
+    },
+    {
+      "id": "log-mqf6rux1",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:20.965Z"
+    },
+    {
+      "id": "log-mqf6rqo6",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:15.462Z"
+    },
+    {
+      "id": "log-mqf6rqno",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:25:15.444Z"
+    },
+    {
+      "id": "log-mqf6qkvb",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:24:21.287Z"
+    },
+    {
+      "id": "log-mqf6pacx",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:23:21.009Z"
+    },
+    {
+      "id": "log-mqf6o0cc",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:22:21.372Z"
+    },
+    {
+      "id": "log-mqf6nw6o",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:22:15.984Z"
+    },
+    {
+      "id": "log-mqf6nqu4",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:22:09.052Z"
+    },
+    {
+      "id": "log-mqf6nldd",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:22:01.969Z"
+    },
+    {
+      "id": "log-mqf6nfyz",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:54.971Z"
+    },
+    {
+      "id": "log-mqf6nat2",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:48.278Z"
+    },
+    {
+      "id": "log-mqf6n55z",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:40.967Z"
+    },
+    {
+      "id": "log-mqf6mzrg",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:33.964Z"
+    },
+    {
+      "id": "log-mqf6mucz",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:26.963Z"
+    },
+    {
+      "id": "log-mqf6mpqm",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:20.974Z"
+    },
+    {
+      "id": "log-mqf6moyv",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:19.975Z"
+    },
+    {
+      "id": "log-mqf6mjjt",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:12.953Z"
+    },
+    {
+      "id": "log-mqf6me5n",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:05.963Z"
+    },
+    {
+      "id": "log-mqf6mdki",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:21:05.202Z"
+    },
+    {
+      "id": "log-mqf6m8zo",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:59.268Z"
+    },
+    {
+      "id": "log-mqf6m864",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:58.204Z"
+    },
+    {
+      "id": "log-mqf6m3cz",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:51.971Z"
+    },
+    {
+      "id": "log-mqf6m2rd",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:51.193Z"
+    },
+    {
+      "id": "log-mqf6lxzc",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:45.000Z"
+    },
+    {
+      "id": "log-mqf6lxd9",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:44.205Z"
+    },
+    {
+      "id": "log-mqf6lsk4",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:37.972Z"
+    },
+    {
+      "id": "log-mqf6lryw",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:37.208Z"
+    },
+    {
+      "id": "log-mqf6ln5b",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:30.959Z"
+    },
+    {
+      "id": "log-mqf6lmjw",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:30.188Z"
+    },
+    {
+      "id": "log-mqf6lhqt",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:23.957Z"
+    },
+    {
+      "id": "log-mqf6lh6h",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:23.225Z"
+    },
+    {
+      "id": "log-mqf6lfg0",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:20.976Z"
+    },
+    {
+      "id": "log-mqf6lcci",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:16.962Z"
+    },
+    {
+      "id": "log-mqf6lbr3",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:16.191Z"
+    },
+    {
+      "id": "log-mqf6l6yc",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:09.972Z"
+    },
+    {
+      "id": "log-mqf6l6co",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:09.192Z"
+    },
+    {
+      "id": "log-mqf6l1jf",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:02.955Z"
+    },
+    {
+      "id": "log-mqf6l0yc",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:20:02.196Z"
+    },
+    {
+      "id": "log-mqf6kw5b",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:55.967Z"
+    },
+    {
+      "id": "log-mqf6kw58",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:55.964Z"
+    },
+    {
+      "id": "log-mqf6kvjp",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:55.189Z"
+    },
+    {
+      "id": "log-mqf6kqqn",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:48.959Z"
+    },
+    {
+      "id": "log-mqf6kqlh",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:48.773Z"
+    },
+    {
+      "id": "log-mqf6kq5m",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:48.202Z"
+    },
+    {
+      "id": "log-mqf6klch",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:41.969Z"
+    },
+    {
+      "id": "log-mqf6klc5",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:41.957Z"
+    },
+    {
+      "id": "log-mqf6kkqs",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:41.188Z"
+    },
+    {
+      "id": "log-mqf6kfxt",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:34.961Z"
+    },
+    {
+      "id": "log-mqf6kfxq",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:34.958Z"
+    },
+    {
+      "id": "log-mqf6kfck",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:34.196Z"
+    },
+    {
+      "id": "log-mqf6kajd",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:27.961Z"
+    },
+    {
+      "id": "log-mqf6kaj9",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:27.957Z"
+    },
+    {
+      "id": "log-mqf6k9ys",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:27.220Z"
+    },
+    {
+      "id": "log-mqf6k54s",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:20.956Z"
+    },
+    {
+      "id": "log-mqf6k54p",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:20.953Z"
+    },
+    {
+      "id": "log-mqf6k4k0",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:20.208Z"
+    },
+    {
+      "id": "log-mqf6jzqw",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:13.976Z"
+    },
+    {
+      "id": "log-mqf6jzqr",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:13.971Z"
+    },
+    {
+      "id": "log-mqf6jz5o",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:13.212Z"
+    },
+    {
+      "id": "log-mqf6jukx",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:07.281Z"
+    },
+    {
+      "id": "log-mqf6juc1",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:06.961Z"
+    },
+    {
+      "id": "log-mqf6jtr1",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:19:06.205Z"
+    },
+    {
+      "id": "log-mqf6jouh",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:59.849Z"
+    },
+    {
+      "id": "log-mqf6jot7",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:59.803Z"
+    },
+    {
+      "id": "log-mqf6josu",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:59.790Z"
+    },
+    {
+      "id": "log-mqf6jos2",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:59.762Z"
+    },
+    {
+      "id": "log-mqf6joed",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:59.269Z"
+    },
+    {
+      "id": "log-mqf6jod1",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:59.221Z"
+    },
+    {
+      "id": "log-mqf6jlug",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:55.960Z"
+    },
+    {
+      "id": "log-mqf6jld4",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:55.336Z"
+    },
+    {
+      "id": "log-mqf6jhq1",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:50.617Z"
+    },
+    {
+      "id": "log-mqf6jfz4",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:48.352Z"
+    },
+    {
+      "id": "log-mqf6jakv",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:41.359Z"
+    },
+    {
+      "id": "log-mqf6j55o",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:34.332Z"
+    },
+    {
+      "id": "log-mqf6izqs",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:27.316Z"
+    },
+    {
+      "id": "log-mqf6iuuk",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:20.972Z"
+    },
+    {
+      "id": "log-mqf6iuug",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:20.968Z"
+    },
+    {
+      "id": "log-mqf6iuch",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:20.321Z"
+    },
+    {
+      "id": "log-mqf6ioxy",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:13.318Z"
+    },
+    {
+      "id": "log-mqf6ijjg",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:18:06.316Z"
+    },
+    {
+      "id": "log-mqf6iedv",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:59.635Z"
+    },
+    {
+      "id": "log-mqf6i8qh",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:52.313Z"
+    },
+    {
+      "id": "log-mqf6i3cb",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:45.323Z"
+    },
+    {
+      "id": "log-mqf6hxy6",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:38.334Z"
+    },
+    {
+      "id": "log-mqf6hsjg",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:31.324Z"
+    },
+    {
+      "id": "log-mqf6hn57",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:24.331Z"
+    },
+    {
+      "id": "log-mqf6hks8",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:21.272Z"
+    },
+    {
+      "id": "log-mqf6hkjy",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:20.974Z"
+    },
+    {
+      "id": "log-mqf6hhrn",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:17.363Z"
+    },
+    {
+      "id": "log-mqf6hcbw",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:10.316Z"
+    },
+    {
+      "id": "log-mqf6h6xe",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:17:03.314Z"
+    },
+    {
+      "id": "log-mqf6h20m",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:56.950Z"
+    },
+    {
+      "id": "log-mqf6h1j2",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:56.318Z"
+    },
+    {
+      "id": "log-mqf6gwmh",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:49.961Z"
+    },
+    {
+      "id": "log-mqf6gw4n",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:49.319Z"
+    },
+    {
+      "id": "log-mqf6gr80",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:42.960Z"
+    },
+    {
+      "id": "log-mqf6gqqd",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:42.325Z"
+    },
+    {
+      "id": "log-mqf6gltb",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:35.951Z"
+    },
+    {
+      "id": "log-mqf6glbw",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:35.324Z"
+    },
+    {
+      "id": "log-mqf6ggfs",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:28.984Z"
+    },
+    {
+      "id": "log-mqf6gfx6",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:28.314Z"
+    },
+    {
+      "id": "log-mqf6gb0r",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:21.963Z"
+    },
+    {
+      "id": "log-mqf6gaiz",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:21.323Z"
+    },
+    {
+      "id": "log-mqf6ga94",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:20.968Z"
+    },
+    {
+      "id": "log-mqf6g5m7",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:14.959Z"
+    },
+    {
+      "id": "log-mqf6g54h",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:14.321Z"
+    },
+    {
+      "id": "log-mqf6g07p",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:07.957Z"
+    },
+    {
+      "id": "log-mqf6fzpy",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:07.318Z"
+    },
+    {
+      "id": "log-mqf6futj",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:00.967Z"
+    },
+    {
+      "id": "log-mqf6fuc2",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:16:00.338Z"
+    },
+    {
+      "id": "log-mqf6fp2j",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:53.515Z"
+    },
+    {
+      "id": "log-mqf6foxb",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:53.327Z"
+    },
+    {
+      "id": "log-mqf6fjis",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:46.324Z"
+    },
+    {
+      "id": "log-mqf6fe4c",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:39.324Z"
+    },
+    {
+      "id": "log-mqf6f8q1",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:32.329Z"
+    },
+    {
+      "id": "log-mqf6f3b8",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:25.316Z"
+    },
+    {
+      "id": "log-mqf6f06u",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:21.270Z"
+    },
+    {
+      "id": "log-mqf6exwq",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:18.314Z"
+    },
+    {
+      "id": "log-mqf6esiq",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:11.330Z"
+    },
+    {
+      "id": "log-mqf6en4v",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:15:04.351Z"
+    },
+    {
+      "id": "log-mqf6ehq7",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:57.343Z"
+    },
+    {
+      "id": "log-mqf6ecb9",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:50.325Z"
+    },
+    {
+      "id": "log-mqf6e6x8",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:43.340Z"
+    },
+    {
+      "id": "log-mqf6e1i7",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:36.319Z"
+    },
+    {
+      "id": "log-mqf6dw3m",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:29.314Z"
+    },
+    {
+      "id": "log-mqf6dqqg",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:22.360Z"
+    },
+    {
+      "id": "log-mqf6dpnr",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:20.967Z"
+    },
+    {
+      "id": "log-mqf6dlaz",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:15.323Z"
+    },
+    {
+      "id": "log-mqf6dfwp",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:08.329Z"
+    },
+    {
+      "id": "log-mqf6dahx",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:14:01.317Z"
+    },
+    {
+      "id": "log-mqf6d53q",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:54.326Z"
+    },
+    {
+      "id": "log-mqf6czpc",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:47.328Z"
+    },
+    {
+      "id": "log-mqf6cuai",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:40.314Z"
+    },
+    {
+      "id": "log-mqf6cowd",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:33.325Z"
+    },
+    {
+      "id": "log-mqf6cjhn",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:26.315Z"
+    },
+    {
+      "id": "log-mqf6cfln",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:21.275Z"
+    },
+    {
+      "id": "log-mqf6cec2",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:19.634Z"
+    },
+    {
+      "id": "log-mqf6c8ox",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:12.321Z"
+    },
+    {
+      "id": "log-mqf6c3bd",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:13:05.353Z"
+    },
+    {
+      "id": "log-mqf6bxw2",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:58.322Z"
+    },
+    {
+      "id": "log-mqf6bsie",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:51.350Z"
+    },
+    {
+      "id": "log-mqf6bn4f",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:44.367Z"
+    },
+    {
+      "id": "log-mqf6bhoj",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:37.315Z"
+    },
+    {
+      "id": "log-mqf6bcbl",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:30.369Z"
+    },
+    {
+      "id": "log-mqf6b6vq",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:23.318Z"
+    },
+    {
+      "id": "log-mqf6b52e",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:20.966Z"
+    },
+    {
+      "id": "log-mqf6b1hn",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:16.331Z"
+    },
+    {
+      "id": "log-mqf6aw41",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:09.361Z"
+    },
+    {
+      "id": "log-mqf6aqou",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:12:02.334Z"
+    },
+    {
+      "id": "log-mqf6alir",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:55.635Z"
+    },
+    {
+      "id": "log-mqf6afvh",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:48.317Z"
+    },
+    {
+      "id": "log-mqf6aah5",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:41.321Z"
+    },
+    {
+      "id": "log-mqf6a52l",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:34.317Z"
+    },
+    {
+      "id": "log-mqf69zoh",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:27.329Z"
+    },
+    {
+      "id": "log-mqf69v02",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:21.266Z"
+    },
+    {
+      "id": "log-mqf69u9p",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:20.317Z"
+    },
+    {
+      "id": "log-mqf69ov8",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:13.316Z"
+    },
+    {
+      "id": "log-mqf69jgt",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:11:06.317Z"
+    },
+    {
+      "id": "log-mqf69e2d",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:10:59.317Z"
+    },
+    {
+      "id": "log-mqf698o0",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:10:52.320Z"
+    },
+    {
+      "id": "log-mqf6939o",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:10:45.324Z"
+    },
+    {
+      "id": "log-mqf68xux",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:10:38.313Z"
+    },
+    {
+      "id": "log-mqf68sgh",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:10:31.313Z"
+    },
+    {
+      "id": "log-mqf68n23",
+      "screenId": "screen-2",
+      "screenName": "Tela não pareada",
+      "mediaName": "Mural Multi-Zona Novo",
+      "mediaType": "Dashboard Bento Grid",
+      "timestamp": "2026-06-15T12:10:24.315Z"
+    }
+  ]
+}

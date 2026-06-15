@@ -191,9 +191,11 @@ export default function App() {
     refreshDatabase();
   };
 
-  const handleSaveDashboard = async (name: string, widgets: DashboardWidget[], duration: number) => {
-    const response = await fetch("/api/media", {
-      method: "POST",
+  const handleSaveDashboard = async (name: string, widgets: DashboardWidget[], duration: number, id?: string) => {
+    const url = id ? `/api/media/${id}` : "/api/media";
+    const method = id ? "PUT" : "POST";
+    const response = await fetch(url, {
+      method,
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
@@ -207,6 +209,19 @@ export default function App() {
       })
     });
     if (!response.ok) throw new Error("Erro ao salvar dashboard customizado.");
+    refreshDatabase();
+  };
+
+  const handleUpdateMedia = async (id: string, updates: Partial<MediaItem>) => {
+    const response = await fetch(`/api/media/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(updates)
+    });
+    if (!response.ok) throw new Error("Erro ao atualizar mídia.");
     refreshDatabase();
   };
 
@@ -378,6 +393,7 @@ export default function App() {
             onDeleteMedia={handleDeleteMedia}
             onSaveDashboard={handleSaveDashboard}
             onSaveFeed={handleSaveFeed}
+            onUpdateMedia={handleUpdateMedia}
           />
         );
       case "playlists":

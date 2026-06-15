@@ -12,6 +12,7 @@ interface DashboardCreatorProps {
   media: MediaItem[];
   onSaveDashboard: (name: string, widgets: DashboardWidget[], duration: number) => Promise<void>;
   onCancel: () => void;
+  editingMedia?: MediaItem;
 }
 
 // Visual layout presets (Templates)
@@ -63,17 +64,17 @@ const LAYOUT_TEMPLATES: LayoutTemplate[] = [
   }
 ];
 
-export function DashboardCreator({ media, onSaveDashboard, onCancel }: DashboardCreatorProps) {
-  const [dashboardName, setDashboardName] = useState("Mural Multi-Zona Novo");
-  const [duration, setDuration] = useState(25);
+export function DashboardCreator({ media, onSaveDashboard, onCancel, editingMedia }: DashboardCreatorProps) {
+  const [dashboardName, setDashboardName] = useState(editingMedia ? editingMedia.name : "Mural Multi-Zona Novo");
+  const [duration, setDuration] = useState(editingMedia ? editingMedia.duration : 25);
   const [orientation, setOrientation] = useState<"landscape" | "portrait">("landscape");
   const [activeTab, setActiveTab] = useState<"properties" | "templates">("properties");
   
   // Widgets list
-  const [widgets, setWidgets] = useState<DashboardWidget[]>([]);
+  const [widgets, setWidgets] = useState<DashboardWidget[]>(editingMedia ? (editingMedia.dashboardWidgets || []) : []);
   
   // History stack for Undo and Redo operations
-  const [history, setHistory] = useState<DashboardWidget[][]>([[]]);
+  const [history, setHistory] = useState<DashboardWidget[][]>(editingMedia ? [editingMedia.dashboardWidgets || []] : [[]]);
   const [historyIndex, setHistoryIndex] = useState(0);
 
   // Active Selected widget ID
@@ -431,41 +432,110 @@ export function DashboardCreator({ media, onSaveDashboard, onCancel }: Dashboard
 
                     {/* Widget content parameters depending on selected type */}
                     {activeWidget.type === "image" && (
-                      <div>
-                        <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">Mídia de Imagem</label>
+                      <div className="space-y-2">
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                          <ImageIcon className="w-3 h-3 text-indigo-400" /> Selecionar Imagem da Biblioteca
+                        </label>
                         {imageMediaOptions.length === 0 ? (
-                          <p className="text-[10px] text-amber-500 italic">Cadastre imagens normais no menu principal para selecionar aqui.</p>
+                          <div className="border border-dashed border-amber-700/40 bg-amber-950/20 rounded-xl p-4 text-center">
+                            <ImageIcon className="w-6 h-6 text-amber-500/60 mx-auto mb-2" />
+                            <p className="text-[10px] text-amber-400 font-semibold">Nenhuma imagem cadastrada</p>
+                            <p className="text-[9px] text-slate-500 mt-0.5">Cadastre imagens na Biblioteca de Mídias para selecionar aqui.</p>
+                          </div>
                         ) : (
-                          <select 
-                            className="w-full bg-slate-950 border border-slate-800 text-slate-100 text-xs rounded-xl p-2.5 font-medium"
-                            value={activeWidget.mediaId || ""}
-                            onChange={(e) => updateWidgetField(activeWidget.id, "mediaId", e.target.value)}
-                          >
-                            <option value="">-- Selecione a imagem corporativa --</option>
-                            {imageMediaOptions.map(m => (
-                              <option key={m.id} value={m.id}>{m.name}</option>
-                            ))}
-                          </select>
+                          <div className="grid grid-cols-2 gap-2.5 max-h-52 overflow-y-auto pr-1 border border-slate-800 p-2.5 rounded-xl bg-slate-950/80">
+                            {imageMediaOptions.map(m => {
+                              const isSelected = activeWidget.mediaId === m.id;
+                              return (
+                                <div
+                                  key={m.id}
+                                  onClick={() => updateWidgetField(activeWidget.id, "mediaId", m.id)}
+                                  className={`border rounded-xl overflow-hidden cursor-pointer transition-all group/card relative ${
+                                    isSelected 
+                                      ? "border-emerald-500 ring-2 ring-emerald-500/30 bg-emerald-950/20 shadow-lg shadow-emerald-900/20" 
+                                      : "border-slate-800 hover:border-indigo-600/50 bg-slate-900 hover:bg-slate-800/80"
+                                  }`}
+                                >
+                                  {/* Thumbnail */}
+                                  <div className="w-full h-16 bg-slate-950 overflow-hidden flex items-center justify-center relative">
+                                    <img src={m.url} className="w-full h-full object-cover transition-transform group-hover/card:scale-105" alt="" loading="lazy" />
+                                    {/* Type badge */}
+                                    <span className="absolute top-1 left-1 bg-indigo-600/90 backdrop-blur-sm text-white text-[7px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md">Imagem</span>
+                                    {/* Duration badge */}
+                                    <span className="absolute bottom-1 right-1 bg-black/75 backdrop-blur-sm text-white text-[8px] font-mono font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                                      <Clock className="w-2.5 h-2.5 text-slate-300" />{m.duration}s
+                                    </span>
+                                    {/* Selection checkmark */}
+                                    {isSelected && (
+                                      <div className="absolute top-1 right-1 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center shadow-md">
+                                        <CheckCircle2 className="w-3 h-3 text-white" />
+                                      </div>
+                                    )}
+                                  </div>
+                                  {/* Info footer */}
+                                  <div className="p-1.5">
+                                    <p className={`text-[9px] font-bold truncate ${isSelected ? "text-emerald-300" : "text-slate-300"}`}>{m.name}</p>
+                                    <p className="text-[8px] text-slate-500 font-mono mt-0.5">{m.size || "Local"}</p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
                         )}
                       </div>
                     )}
 
                     {activeWidget.type === "video" && (
-                      <div>
-                        <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">Mídia de Vídeo Loop</label>
+                      <div className="space-y-2">
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                          <VideoIcon className="w-3 h-3 text-sky-400" /> Selecionar Vídeo da Biblioteca
+                        </label>
                         {videoMediaOptions.length === 0 ? (
-                          <p className="text-[10px] text-amber-500 italic">Cadastre vídeos normais no menu principal para selecionar aqui.</p>
+                          <div className="border border-dashed border-amber-700/40 bg-amber-950/20 rounded-xl p-4 text-center">
+                            <VideoIcon className="w-6 h-6 text-amber-500/60 mx-auto mb-2" />
+                            <p className="text-[10px] text-amber-400 font-semibold">Nenhum vídeo cadastrado</p>
+                            <p className="text-[9px] text-slate-500 mt-0.5">Cadastre vídeos na Biblioteca de Mídias para selecionar aqui.</p>
+                          </div>
                         ) : (
-                          <select 
-                            className="w-full bg-slate-950 border border-slate-800 text-slate-100 text-xs rounded-xl p-2.5 font-medium"
-                            value={activeWidget.mediaId || ""}
-                            onChange={(e) => updateWidgetField(activeWidget.id, "mediaId", e.target.value)}
-                          >
-                            <option value="">-- Selecione o vídeo da biblioteca --</option>
-                            {videoMediaOptions.map(m => (
-                              <option key={m.id} value={m.id}>{m.name}</option>
-                            ))}
-                          </select>
+                          <div className="grid grid-cols-2 gap-2.5 max-h-52 overflow-y-auto pr-1 border border-slate-800 p-2.5 rounded-xl bg-slate-950/80">
+                            {videoMediaOptions.map(m => {
+                              const isSelected = activeWidget.mediaId === m.id;
+                              return (
+                                <div
+                                  key={m.id}
+                                  onClick={() => updateWidgetField(activeWidget.id, "mediaId", m.id)}
+                                  className={`border rounded-xl overflow-hidden cursor-pointer transition-all group/card relative ${
+                                    isSelected 
+                                      ? "border-emerald-500 ring-2 ring-emerald-500/30 bg-emerald-950/20 shadow-lg shadow-emerald-900/20" 
+                                      : "border-slate-800 hover:border-sky-600/50 bg-slate-900 hover:bg-slate-800/80"
+                                  }`}
+                                >
+                                  {/* Video Thumbnail */}
+                                  <div className="w-full h-16 bg-slate-950 overflow-hidden flex items-center justify-center relative">
+                                    {m.url && <video src={m.url} className="absolute inset-0 w-full h-full object-cover opacity-50" muted playsInline />}
+                                    <VideoIcon className="w-5 h-5 text-white/80 z-10 drop-shadow-lg" />
+                                    {/* Type badge */}
+                                    <span className="absolute top-1 left-1 bg-sky-600/90 backdrop-blur-sm text-white text-[7px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md">Vídeo</span>
+                                    {/* Duration badge */}
+                                    <span className="absolute bottom-1 right-1 bg-black/75 backdrop-blur-sm text-white text-[8px] font-mono font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                                      <Clock className="w-2.5 h-2.5 text-slate-300" />{m.duration}s
+                                    </span>
+                                    {/* Selection checkmark */}
+                                    {isSelected && (
+                                      <div className="absolute top-1 right-1 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center shadow-md">
+                                        <CheckCircle2 className="w-3 h-3 text-white" />
+                                      </div>
+                                    )}
+                                  </div>
+                                  {/* Info footer */}
+                                  <div className="p-1.5">
+                                    <p className={`text-[9px] font-bold truncate ${isSelected ? "text-emerald-300" : "text-slate-300"}`}>{m.name}</p>
+                                    <p className="text-[8px] text-slate-500 font-mono mt-0.5">{m.size || "Local"}</p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
                         )}
                       </div>
                     )}

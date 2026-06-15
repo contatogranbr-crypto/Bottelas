@@ -381,6 +381,30 @@ app.delete("/api/media/:id", authenticateAdmin, (req, res) => {
   res.json({ success: true, message: "Mídia deletada com sucesso." });
 });
 
+app.put("/api/media/:id", authenticateAdmin, (req, res) => {
+  const db = loadDB();
+  const mediaId = req.params.id;
+  const { name, duration, url, feedCategory, dashboardWidgets } = req.body;
+
+  const idx = db.media.findIndex(m => m.id === mediaId);
+  if (idx === -1) {
+    res.status(404).json({ error: "Mídia não encontrada." });
+    return;
+  }
+
+  db.media[idx] = {
+    ...db.media[idx],
+    name: name !== undefined ? name : db.media[idx].name,
+    duration: duration !== undefined ? Number(duration) : db.media[idx].duration,
+    url: url !== undefined ? url : db.media[idx].url,
+    feedCategory: feedCategory !== undefined ? feedCategory : db.media[idx].feedCategory,
+    dashboardWidgets: dashboardWidgets !== undefined ? dashboardWidgets : db.media[idx].dashboardWidgets
+  };
+
+  saveDB(db);
+  res.json(db.media[idx]);
+});
+
 /**
  * PLAYLIST ENDPOINTS API
  */

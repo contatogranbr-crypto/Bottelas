@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Image, Video, Link2, FileText, Plus, Trash2, Globe, ArrowUpRight, UploadCloud, AlertCircle, PlayCircle, Clock, Search, HelpCircle, HardDrive, Newspaper, LayoutGrid, Sparkles } from "lucide-react";
+import { Image, Video, Link2, FileText, Plus, Trash2, Globe, ArrowUpRight, UploadCloud, AlertCircle, PlayCircle, Clock, Search, HelpCircle, HardDrive, Newspaper, LayoutGrid, Sparkles, Edit2 } from "lucide-react";
 import { MediaItem, DashboardWidget } from "../types";
 import { DashboardCreator } from "./DashboardCreator";
 
@@ -8,8 +8,9 @@ interface MediaLibraryProps {
   onUploadFile: (name: string, type: 'image' | 'video' | 'pdf', base64Data: string, filename: string) => Promise<void>;
   onAddExternalLink: (name: string, type: 'image' | 'video' | 'pdf' | 'link' | 'html', url: string, duration: number) => Promise<void>;
   onDeleteMedia: (id: string) => Promise<void>;
-  onSaveDashboard: (name: string, widgets: DashboardWidget[], duration: number) => Promise<void>;
+  onSaveDashboard: (name: string, widgets: DashboardWidget[], duration: number, id?: string) => Promise<void>;
   onSaveFeed: (name: string, category: string, duration: number) => Promise<void>;
+  onUpdateMedia?: (id: string, updates: Partial<MediaItem>) => Promise<void>;
 }
 
 export function MediaLibrary({ 
@@ -18,7 +19,8 @@ export function MediaLibrary({
   onAddExternalLink, 
   onDeleteMedia,
   onSaveDashboard,
-  onSaveFeed
+  onSaveFeed,
+  onUpdateMedia
 }: MediaLibraryProps) {
   // states
   const [activeTypeTab, setActiveTypeTab] = useState<'all' | 'image' | 'video' | 'html' | 'pdf' | 'feed' | 'dashboard'>('all');
@@ -35,6 +37,10 @@ export function MediaLibrary({
 
   // Dashboard creation interactive workflow state
   const [isBuildingDashboard, setIsBuildingDashboard] = useState(false);
+  
+  // Media editing states
+  const [editingMedia, setEditingMedia] = useState<MediaItem | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
   
   // File drag states
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -159,6 +165,74 @@ export function MediaLibrary({
     }
   };
 
+  const handleStartEdit = (item: MediaItem) => {
+    setEditingMedia(item);
+    if (item.type === "dashboard") {
+      setIsBuildingDashboard(true);
+    } else {
+      setMediaName(item.name);
+      setMediaType(item.type === 'feed' || item.type === 'dashboard' ? 'image' : item.type as any);
+      setCustomDuration(item.duration);
+      if (item.type === 'feed') {
+        setAddMode('feed');
+        setSelectedFeedCategory(item.feedCategory || 'geral');
+      } else if (item.url && item.url.startsWith("http")) {
+        setAddMode('link');
+        setLinkUrl(item.url);
+      } else {
+        setAddMode('upload');
+        setSelectedFile(null);
+      }
+      setErrorMessage("");
+      setShowEditModal(true);
+    }
+  };
+
+  const handleEditSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingMedia) return;
+    if (!mediaName.trim()) {
+      setErrorMessage("Insira um nome identificador amigável.");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      let updates: Partial<MediaItem> = {
+        name: mediaName,
+        duration: customDuration,
+      };
+
+      if (addMode === 'feed') {
+        updates.feedCategory = selectedFeedCategory;
+      } else if (addMode === 'link') {
+        if (!linkUrl.trim() || !linkUrl.startsWith("http")) {
+          setErrorMessage("Por favor insira um link web completo válido (deve iniciar com http:// ou https://).");
+          setLoading(false);
+          return;
+        }
+        updates.url = linkUrl;
+        updates.type = mediaType as any;
+      }
+
+      if (onUpdateMedia) {
+        await onUpdateMedia(editingMedia.id, updates);
+      }
+
+      setShowEditModal(false);
+      setEditingMedia(null);
+      setMediaName("");
+      setLinkUrl("");
+      setCustomDuration(10);
+    } catch (err: any) {
+      setErrorMessage(err.message || "Erro ao salvar alterações.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleDelete = async (id: string, name: string) => {
     if (confirm(`Deseja deletar permanentemente a mídia "${name}"? Ela será removida de qualquer playlist ativa.`)) {
       try {
@@ -181,11 +255,16 @@ export function MediaLibrary({
     return (
       <DashboardCreator 
         media={media}
+        editingMedia={editingMedia || undefined}
         onSaveDashboard={async (name, widgets, duration) => {
-          await onSaveDashboard(name, widgets, duration);
+          await onSaveDashboard(name, widgets, duration, editingMedia?.id);
           setIsBuildingDashboard(false);
+          setEditingMedia(null);
         }}
-        onCancel={() => setIsBuildingDashboard(false)}
+        onCancel={() => {
+          setIsBuildingDashboard(false);
+          setEditingMedia(null);
+        }}
       />
     );
   }
@@ -408,7 +487,6 @@ export function MediaLibrary({
                   </div>
                 </div>
 
-                {/* Bottom interactive action triggers */}
                 <div className="px-4 pb-4.5 pt-2 border-t border-slate-100 flex justify-between gap-1 items-center">
                   {item.url && item.url.startsWith("http") ? (
                     <a 
@@ -426,14 +504,23 @@ export function MediaLibrary({
                   ) : (
                     <span className="text-[10px] text-slate-400 italic font-mono">Local</span>
                   )}
-
-                  <button 
-                    onClick={() => handleDelete(item.id, item.name)}
-                    className="p-1 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors ml-auto cursor-pointer"
-                    title="Remover mídia"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
+ 
+                  <div className="flex gap-1 ml-auto">
+                    <button 
+                      onClick={() => handleStartEdit(item)}
+                      className="p-1 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors cursor-pointer"
+                      title="Editar mídia"
+                    >
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </button>
+                    <button 
+                      onClick={() => handleDelete(item.id, item.name)}
+                      className="p-1 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors cursor-pointer"
+                      title="Remover mídia"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               </div>
             );
@@ -645,6 +732,157 @@ export function MediaLibrary({
                   className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold rounded-lg text-xs cursor-pointer shadow-xs"
                 >
                   {loading ? "Processando upload..." : "Salvar Mídia"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Edit Container */}
+      {showEditModal && editingMedia && (
+        <div className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+          <div className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <h3 className="text-lg font-bold text-slate-900 mb-1">Editar Mídia</h3>
+            <p className="text-xs text-slate-400 mb-5 leading-relaxed">
+              Edite as propriedades desta mídia na biblioteca.
+            </p>
+
+            <form onSubmit={handleEditSave} className="space-y-4 font-sans text-left">
+              {/* Media Common Friendly Name */}
+              <div>
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Nome do slide corporativo</label>
+                <input 
+                  type="text" 
+                  required
+                  placeholder="Ex. Slide 1"
+                  value={mediaName}
+                  onChange={(e) => setMediaName(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white font-medium"
+                />
+              </div>
+
+              {editingMedia.type === 'feed' ? (
+                /* NEWS FEEDS ADD WORKFLOW */
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Canal de Notícias</label>
+                      <select 
+                        className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-lg p-2.5 font-semibold"
+                        value={selectedFeedCategory}
+                        onChange={(e) => setSelectedFeedCategory(e.target.value)}
+                      >
+                        <option value="geral">Geral (Manchetes Populares)</option>
+                        <option value="tecnologia">Tecnologia & Inovação (IA, etc)</option>
+                        <option value="financas">Economia e Finanças Mundiais</option>
+                        <option value="corporativo">Recursos Humanos / Avisos Internos</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Duração no Slide (segundos)</label>
+                      <input 
+                        type="number" 
+                        min="5"
+                        max="300"
+                        value={customDuration}
+                        onChange={(e) => setCustomDuration(Number(e.target.value))}
+                        className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-lg p-2"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (editingMedia.url && editingMedia.url.startsWith("http")) ? (
+                /* LINK / REFERENCE FOR WEB IFRAMES */
+                <div className="space-y-3.5">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Tipo do link</label>
+                      <select 
+                        className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-lg p-2.5 font-semibold"
+                        value={mediaType}
+                        onChange={(e: any) => setMediaType(e.target.value)}
+                      >
+                        <option value="image">URL de Imagem (JPG/PNG)</option>
+                        <option value="video">URL de Vídeo Remoto (MP4)</option>
+                        <option value="html">Site / Dashboard Integrado</option>
+                        <option value="pdf">URL de PDF no Drive</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Duração Padrão (segundos)</label>
+                      <input 
+                        type="number" 
+                        min="3"
+                        max="300"
+                        value={customDuration}
+                        onChange={(e) => setCustomDuration(Number(e.target.value))}
+                        className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-lg p-2 font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Endereço de Link Completo (URL)</label>
+                    <input 
+                      type="url"
+                      required
+                      placeholder="https://suaempresa.com.br/dashboard"
+                      value={linkUrl}
+                      onChange={(e) => setLinkUrl(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
+                    />
+                  </div>
+                </div>
+              ) : (
+                /* LOCAL UPLOADED FILE - ONLY DURATION AND NAME */
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Duração (segundos)</label>
+                    <input 
+                      type="number" 
+                      min="3"
+                      max="300"
+                      value={customDuration}
+                      onChange={(e) => setCustomDuration(Number(e.target.value))}
+                      className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-lg p-2.5 font-medium"
+                    />
+                  </div>
+                  <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-500 text-[11px]">
+                    Arquivo: <strong className="text-slate-700">{editingMedia.url}</strong>
+                    <br />
+                    Para substituir o arquivo físico por outro, envie uma nova mídia usando o botão principal.
+                  </div>
+                </div>
+              )}
+
+              {errorMessage && (
+                <div className="bg-rose-50 border border-rose-200 text-rose-700 text-xs p-3.5 rounded-lg flex gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
+              {/* Action buttons */}
+              <div className="flex gap-2 justify-end pt-5 border-t border-slate-100">
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setShowEditModal(false);
+                    setEditingMedia(null);
+                  }}
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-lg text-xs cursor-pointer"
+                >
+                  Cancelar
+                </button>
+                <button 
+                  type="submit"
+                  disabled={loading}
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold rounded-lg text-xs cursor-pointer shadow-xs"
+                >
+                  {loading ? "Salvando..." : "Salvar Alterações"}
                 </button>
               </div>
             </form>
