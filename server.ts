@@ -838,6 +838,23 @@ app.get("/api/player-state/code/:code", (req, res) => {
         ...plObj,
         items: itemsResolved
       };
+    } else {
+      // Check if activePlaylistId is actually a dashboard media item
+      const mediaItem = db.media.find(m => m.id === activePlaylistId && m.type === "dashboard");
+      if (mediaItem) {
+        activePlaylist = {
+          id: mediaItem.id,
+          name: mediaItem.name,
+          description: "Dashboard Direto",
+          items: [
+            {
+              mediaId: mediaItem.id,
+              duration: mediaItem.duration || 30,
+              media: resolveMediaWithWidgets(mediaItem, db.media)
+            }
+          ]
+        };
+      }
     }
   }
 
@@ -941,6 +958,23 @@ app.get("/api/player-state/screen/:screenId", (req, res) => {
         ...plObj,
         items: itemsResolved
       };
+    } else {
+      // Check if activePlaylistId is actually a dashboard media item
+      const mediaItem = db.media.find(m => m.id === activePlaylistId && m.type === "dashboard");
+      if (mediaItem) {
+        activePlaylist = {
+          id: mediaItem.id,
+          name: mediaItem.name,
+          description: "Dashboard Direto",
+          items: [
+            {
+              mediaId: mediaItem.id,
+              duration: mediaItem.duration || 30,
+              media: resolveMediaWithWidgets(mediaItem, db.media)
+            }
+          ]
+        };
+      }
     }
   }
 

@@ -362,6 +362,7 @@ export default function App() {
           <ScreensManager 
             screens={screens} 
             playlists={playlists}
+            media={media}
             onAddScreen={handleAddScreen}
             onUpdateScreen={handleUpdateScreen}
             onDeleteScreen={handleDeleteScreen}
@@ -395,6 +396,7 @@ export default function App() {
             schedules={schedules} 
             playlists={playlists} 
             screens={screens}
+            media={media}
             onCreateSchedule={handleCreateSchedule}
             onUpdateSchedule={handleUpdateSchedule}
             onDeleteSchedule={handleDeleteSchedule}

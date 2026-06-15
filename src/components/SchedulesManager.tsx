@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { Calendar, Plus, Trash2, Edit2, Play, AlertCircle, Check, Hourglass, Clock, ArrowRight, UserCheck } from "lucide-react";
-import { Schedule, Playlist, Screen } from "../types";
+import { Schedule, Playlist, Screen, MediaItem } from "../types";
 
 interface SchedulesManagerProps {
   schedules: Schedule[];
   playlists: Playlist[];
   screens: Screen[];
+  media: MediaItem[];
   onCreateSchedule: (data: Omit<Schedule, 'id' | 'createdAt'>) => Promise<void>;
   onUpdateSchedule: (id: string, updates: Partial<Schedule>) => Promise<void>;
   onDeleteSchedule: (id: string) => Promise<void>;
 }
 
-export function SchedulesManager({ schedules, playlists, screens, onCreateSchedule, onUpdateSchedule, onDeleteSchedule }: SchedulesManagerProps) {
+export function SchedulesManager({ schedules, playlists, screens, media, onCreateSchedule, onUpdateSchedule, onDeleteSchedule }: SchedulesManagerProps) {
+  const dashboards = media ? media.filter(m => m.type === "dashboard") : [];
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingSchedule, setEditingSchedule] = useState<Schedule | null>(null);
 
@@ -183,6 +185,7 @@ export function SchedulesManager({ schedules, playlists, screens, onCreateSchedu
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {schedules.map(sch => {
             const bindPlaylist = playlists.find(p => p.id === sch.playlistId);
+            const bindDashboard = !bindPlaylist ? dashboards.find(d => d.id === sch.playlistId) : null;
             
             return (
               <div 
@@ -217,8 +220,10 @@ export function SchedulesManager({ schedules, playlists, screens, onCreateSchedu
                   {/* Programmatic rules details */}
                   <div className="space-y-2 mt-4 py-3.5 border-t border-b border-dashed border-slate-100 text-xs">
                     <div className="flex justify-between text-slate-600">
-                      <span>Playlist:</span>
-                      <strong className="text-slate-800 font-semibold">{bindPlaylist?.name || "Playlist Removida"}</strong>
+                      <span>Playlist/Dashboard:</span>
+                      <strong className="text-slate-800 font-semibold">
+                        {bindPlaylist ? bindPlaylist.name : bindDashboard ? `${bindDashboard.name} (Dashboard)` : "Removido"}
+                      </strong>
                     </div>
 
                     {sch.activeType === "scheduled" && (
@@ -306,10 +311,21 @@ export function SchedulesManager({ schedules, playlists, screens, onCreateSchedu
                     value={playlistId}
                     onChange={(e) => setPlaylistId(e.target.value)}
                   >
-                    <option value="">Selecione a playlist...</option>
-                    {playlists.map(p => (
-                      <option key={p.id} value={p.id}>{p.name}</option>
-                    ))}
+                    <option value="">Selecione a playlist/dashboard...</option>
+                    {playlists.length > 0 && (
+                      <optgroup label="Playlists de Transmissão">
+                        {playlists.map(p => (
+                          <option key={p.id} value={p.id}>{p.name}</option>
+                        ))}
+                      </optgroup>
+                    )}
+                    {dashboards.length > 0 && (
+                      <optgroup label="Dashboards Bento Grid">
+                        {dashboards.map(d => (
+                          <option key={d.id} value={d.id}>{d.name}</option>
+                        ))}
+                      </optgroup>
+                    )}
                   </select>
                 </div>
 

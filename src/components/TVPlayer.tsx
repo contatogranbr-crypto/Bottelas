@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Tv, Wifi, WifiOff, RefreshCw, Layers, ArrowLeft, AlertCircle, Play, Pause, ChevronRight, Clock as ClockIcon, CloudSun, Megaphone } from "lucide-react";
+import { Tv, Wifi, WifiOff, RefreshCw, Layers, ArrowLeft, AlertCircle, Play, Pause, ChevronRight, Clock as ClockIcon, CloudSun, Megaphone, Maximize, Minimize } from "lucide-react";
 import { PlaylistItem, MediaItem } from "../types";
 
 // Constant live corporate feed categories and headline samples
@@ -71,6 +71,11 @@ export function TVPlayer({ onBackToAdmin, presetCode }: TVPlayerProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorCount, setErrorCount] = useState<number>(0);
 
+  // Fullscreen and Mouse Idle states
+  const [showControls, setShowControls] = useState<boolean>(true);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const controlsTimeoutRef = useRef<any>(null);
+
   // Clock ticks updated inside components for Dashboards
   const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
 
@@ -78,6 +83,63 @@ export function TVPlayer({ onBackToAdmin, presetCode }: TVPlayerProps) {
   const progressTimerRef = useRef<any>(null);
   const pollingTimerRef = useRef<any>(null);
   const currentItemDurationRef = useRef<number>(10);
+
+  // Mouse idle visibility tracker
+  const resetControlsTimeout = () => {
+    setShowControls(true);
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    controlsTimeoutRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    resetControlsTimeout();
+
+    const handleMouseMove = () => {
+      resetControlsTimeout();
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchstart", handleMouseMove);
+
+    return () => {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchstart", handleMouseMove);
+    };
+  }, []);
+
+  // Fullscreen event listener
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        setIsFullscreen(true);
+      }).catch(err => {
+        console.error("Error attempting to enable full-screen mode:", err);
+      });
+    } else {
+      document.exitFullscreen().then(() => {
+        setIsFullscreen(false);
+      }).catch(err => {
+        console.error("Error attempting to exit full-screen mode:", err);
+      });
+    }
+  };
 
   useEffect(() => {
     const clockTimer = setInterval(() => {
@@ -236,9 +298,17 @@ export function TVPlayer({ onBackToAdmin, presetCode }: TVPlayerProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black text-white flex flex-col z-50 overflow-hidden select-none">
+    <div 
+      className={`fixed inset-0 bg-black text-white flex flex-col z-50 overflow-hidden select-none ${
+        showControls ? "cursor-default" : "cursor-none"
+      }`}
+      onMouseMove={resetControlsTimeout}
+      onTouchStart={resetControlsTimeout}
+    >
       {/* Simulation Control Overlay Header - Only visible on hover/mouse move */}
-      <div className="absolute top-0 inset-x-0 bg-gradient-to-b from-black/90 to-transparent p-4 flex justify-between items-center opacity-20 hover:opacity-100 focus-within:opacity-100 transition-opacity z-50">
+      <div className={`absolute top-0 inset-x-0 bg-gradient-to-b from-black/90 to-transparent p-4 flex justify-between items-center transition-all duration-300 z-50 ${
+        showControls ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}>
         <div className="flex items-center gap-3">
           <button 
             onClick={onBackToAdmin}
@@ -266,6 +336,15 @@ export function TVPlayer({ onBackToAdmin, presetCode }: TVPlayerProps) {
             {isOnline ? <Wifi className="w-3.5 h-3.5" /> : <WifiOff className="w-3.5 h-3.5" />}
             <span>{isOnline ? "Conectado" : "Offline / Cache Local"}</span>
           </div>
+
+          <button 
+            onClick={toggleFullscreen}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold cursor-pointer transition-colors"
+            title="Colocar o player em tela cheia"
+          >
+            {isFullscreen ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
+            <span>{isFullscreen ? "Sair de Tela Cheia" : "Tela Cheia"}</span>
+          </button>
 
           <button 
             onClick={() => setIsOfflineSimulated(!isOfflineSimulated)}
@@ -548,7 +627,9 @@ export function TVPlayer({ onBackToAdmin, presetCode }: TVPlayerProps) {
               )}
 
               {/* Toast notifier for slide change */}
-              <div className="absolute right-6 bottom-6 bg-slate-950/85 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-800/80 max-w-sm flex items-center gap-3 shadow-2xl z-40 transition-all duration-300">
+              <div className={`absolute right-6 bottom-6 bg-slate-950/85 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-800/80 max-w-sm flex items-center gap-3 shadow-2xl z-40 transition-all duration-300 ${
+                showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}>
                 <div className="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-ping"></div>
                 <div>
                   <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Reproduzindo atual</p>
@@ -562,7 +643,9 @@ export function TVPlayer({ onBackToAdmin, presetCode }: TVPlayerProps) {
             </div>
 
             {/* Slide advance timeline tracker on bottom */}
-            <div className="absolute bottom-0 inset-x-0 h-1.5 bg-slate-900 z-50">
+            <div className={`absolute bottom-0 inset-x-0 h-1.5 bg-slate-900 z-50 transition-opacity duration-300 ${
+              showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}>
               <div 
                 className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-100 ease-linear"
                 style={{ width: `${progress}%` }}
@@ -574,7 +657,9 @@ export function TVPlayer({ onBackToAdmin, presetCode }: TVPlayerProps) {
 
       {/* Manual playback buttons panel triggered on mouse hover at the bottom center too */}
       {playlist?.items?.length > 0 && screenInfo?.isPaired && (
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-xl border border-slate-800 px-5 py-2.5 rounded-full flex items-center gap-4 opacity-0 hover:opacity-100 focus-within:opacity-100 transition-opacity duration-300 shadow-2xl z-50">
+        <div className={`absolute bottom-16 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-xl border border-slate-800 px-5 py-2.5 rounded-full flex items-center gap-4 transition-all duration-300 shadow-2xl z-50 ${
+          showControls ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}>
           <button 
             onClick={prevSlide}
             className="p-1.5 hover:bg-slate-800 rounded-full transition-colors cursor-pointer"

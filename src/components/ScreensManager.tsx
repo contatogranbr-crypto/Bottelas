@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { Tv, Check, RefreshCw, Plus, Trash2, Edit2, AlertCircle, Wifi, Play, Layers, ShieldAlert, PlusCircle, ArrowRight, Save } from "lucide-react";
-import { Screen, Playlist } from "../types";
+import { Screen, Playlist, MediaItem } from "../types";
 
 interface ScreensManagerProps {
   screens: Screen[];
   playlists: Playlist[];
+  media: MediaItem[];
   onAddScreen: (name: string, location: string, notes: string, currentPlaylistId?: string) => Promise<void>;
   onUpdateScreen: (id: string, updates: Partial<Screen>) => Promise<void>;
   onDeleteScreen: (id: string) => Promise<void>;
   onPairWithCode: (code: string, name: string, location: string, notes: string, currentPlaylistId?: string) => Promise<boolean>;
 }
 
-export function ScreensManager({ screens, playlists, onAddScreen, onUpdateScreen, onDeleteScreen, onPairWithCode }: ScreensManagerProps) {
+export function ScreensManager({ screens, playlists, media, onAddScreen, onUpdateScreen, onDeleteScreen, onPairWithCode }: ScreensManagerProps) {
+  const dashboards = media ? media.filter(m => m.type === "dashboard") : [];
   // UI states
   const [showAddModal, setShowAddModal] = useState(false);
   const [showPairModal, setShowPairModal] = useState(false);
@@ -196,6 +198,7 @@ export function ScreensManager({ screens, playlists, onAddScreen, onUpdateScreen
               (Date.now() - new Date(screen.lastHeartbeat).getTime()) < 45000;
 
             const matchedPlaylist = playlists.find(p => p.id === screen.currentPlaylistId);
+            const matchedDashboard = !matchedPlaylist ? dashboards.find(d => d.id === screen.currentPlaylistId) : null;
 
             return (
               <div 
@@ -326,16 +329,27 @@ export function ScreensManager({ screens, playlists, onAddScreen, onUpdateScreen
                         value={editPlaylistId}
                         onChange={(e) => setEditPlaylistId(e.target.value)}
                       >
-                        <option value="">Nenhum playlist (Tela Padrão ou Ociosa)</option>
-                        {playlists.map(p => (
-                          <option key={p.id} value={p.id}>{p.name}</option>
-                        ))}
+                        <option value="">Nenhum playlist/dashboard (Tela Padrão ou Ociosa)</option>
+                        {playlists.length > 0 && (
+                          <optgroup label="Playlists de Transmissão">
+                            {playlists.map(p => (
+                              <option key={p.id} value={p.id}>{p.name}</option>
+                            ))}
+                          </optgroup>
+                        )}
+                        {dashboards.length > 0 && (
+                          <optgroup label="Dashboards Bento Grid">
+                            {dashboards.map(d => (
+                              <option key={d.id} value={d.id}>{d.name}</option>
+                            ))}
+                          </optgroup>
+                        )}
                       </select>
                     ) : (
                       <div className="flex items-center gap-1.5">
                         <Layers className="w-3.5 h-3.5 text-indigo-500" />
-                        <span className={matchedPlaylist ? "font-semibold text-slate-800" : "text-amber-600 font-medium italic"}>
-                          {matchedPlaylist ? matchedPlaylist.name : "Nenhuma playlist fixa ativa"}
+                        <span className={(matchedPlaylist || matchedDashboard) ? "font-semibold text-slate-800" : "text-amber-600 font-medium italic"}>
+                          {matchedPlaylist ? matchedPlaylist.name : matchedDashboard ? `${matchedDashboard.name} (Dashboard)` : "Nenhuma playlist/dashboard ativo"}
                         </span>
                       </div>
                     )}
@@ -435,10 +449,21 @@ export function ScreensManager({ screens, playlists, onAddScreen, onUpdateScreen
                   value={currentPlaylistId}
                   onChange={(e) => setCurrentPlaylistId(e.target.value)}
                 >
-                  <option value="">Sem playlist fixa incialmente</option>
-                  {playlists.map(p => (
-                    <option key={p.id} value={p.id}>{p.name}</option>
-                  ))}
+                  <option value="">Sem playlist/dashboard fixo inicialmente</option>
+                  {playlists.length > 0 && (
+                    <optgroup label="Playlists de Transmissão">
+                      {playlists.map(p => (
+                        <option key={p.id} value={p.id}>{p.name}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {dashboards.length > 0 && (
+                    <optgroup label="Dashboards Bento Grid">
+                      {dashboards.map(d => (
+                        <option key={d.id} value={d.id}>{d.name}</option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
               </div>
 
@@ -539,10 +564,21 @@ export function ScreensManager({ screens, playlists, onAddScreen, onUpdateScreen
                   value={currentPlaylistId}
                   onChange={(e) => setCurrentPlaylistId(e.target.value)}
                 >
-                  <option value="">Sem playlist fixa inicialmente</option>
-                  {playlists.map(p => (
-                    <option key={p.id} value={p.id}>{p.name}</option>
-                  ))}
+                  <option value="">Sem playlist/dashboard fixo inicialmente</option>
+                  {playlists.length > 0 && (
+                    <optgroup label="Playlists de Transmissão">
+                      {playlists.map(p => (
+                        <option key={p.id} value={p.id}>{p.name}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {dashboards.length > 0 && (
+                    <optgroup label="Dashboards Bento Grid">
+                      {dashboards.map(d => (
+                        <option key={d.id} value={d.id}>{d.name}</option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
               </div>
 
