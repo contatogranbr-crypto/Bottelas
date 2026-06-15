@@ -1,0 +1,6 @@
+{
+  "name": "Digital Signage Admin",
+  "description": "Plataforma de gestão de telas corporativas e sinalização digital interna, com controle de playlists, agendamentos, pareamento e status em tempo real.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
